@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from answer.models import Test
 from django.views.decorators.csrf import csrf_exempt
-import json
+import json, datetime
 
 
 def keyboard(request):
@@ -17,37 +17,54 @@ def keyboard(request):
 
 
 @csrf_exempt
-def message(request):
-    if request.POST:
-        json_str = ((request.body).decode('utf-8'))
-        json_data = json.loads(json_str)
+def answer(request):
+    json_str = ((request.body).decode('utf-8'))
+    received_json_data = json.loads(json_str)
+    cafeteria_name = received_json_data['content']
+    today_date = datetime.date.today().strftime("%m월 %d일")
 
-        # 응답타입 체크 : content가 "삼성", "엘지" 이런거라면 check_type = maker
-        # 코드로는 ex) check_is_maker(user_response)
-        # user_response = json_data['content']
-        # def check_is_maker(user_response)
-        #   maker = Test.objects.all().value??()['test']
-        #   for user_response in maker:
-        #       if maker:
-        #           return maker
+    return JsonResponse({
+        'message': {
+            'text': today_date + '의 ' + cafeteria_name + ' 중식 메뉴입니다.'
+        },
+        'keyboard': {
+            'type': 'buttons',
+            'buttons': ['상록원', '그루터기', '아리수', '기숙사식당', '교직원식당']
+        }
 
-        # if check_is_maker(user_response)
-        # elif check_is_model(user_response)
-        # ...
+    })
 
-        user_response = json_data['content']
-        test = Test.objects.all().first()
-        return JsonResponse({
-            'message': {
-                'text': user_response
-            },
-            'keyboard': {
-                'type': 'buttons',
-                'buttons': ['galaxy', 'bega', 'sony']
-            }
-            # "photo": {
-            #     "url": test.testPhoto.url,
-            #     "width": 640,
-            #     "height": 480
-            # },
-        })
+# @csrf_exempt
+# def answer(request):
+#     if request.POST:
+#         json_str = ((request.body).decode('utf-8'))
+#         json_data = json.loads(json_str)
+#
+#         # 응답타입 체크 : content가 "삼성", "엘지" 이런거라면 check_type = maker
+#         # 코드로는 ex) check_is_maker(user_response)
+#         # user_response = json_data['content']
+#         # def check_is_maker(user_response)
+#         #   maker = Test.objects.all().value??()['test']
+#         #   for user_response in maker:
+#         #       if maker:
+#         #           return maker
+#
+#         # if check_is_maker(user_response)
+#         # elif check_is_model(user_response)
+#         # ...
+#
+#         user_response = json_data['content']
+#         return JsonResponse({
+#             'message': {
+#                 'text': user_response
+#             },
+#             'keyboard': {
+#                 'type': 'buttons',
+#                 'buttons': ['galaxy', 'bega', 'sony']
+#             }
+#             # "photo": {
+#             #     "url": test.testPhoto.url,
+#             #     "width": 640,
+#             #     "height": 480
+#             # },
+#         })
