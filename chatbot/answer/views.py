@@ -43,7 +43,7 @@ def message(request):
             },
             'keyboard': {
                 'type': 'buttons',
-                'buttons': ['galaxy', 'bega']
+                'buttons': ['galaxy', 'bega', 'sony']
             },
             "photo": {
                 "url": test.testPhoto.url,
