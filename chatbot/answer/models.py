@@ -11,3 +11,4 @@ class TimeStampedModel(models.Model):
 
 class Test(TimeStampedModel):
     test = models.TextField(default="")
+    testPhoto = models.ImageField(null=True, blank=True)
