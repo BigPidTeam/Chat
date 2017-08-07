@@ -28,6 +28,7 @@ def message(request):
             'text': return_str,
             "photo": {
                 "url": "http://ec2-13-124-156-121.ap-northeast-2.compute.amazonaws.com" + test.testPhoto.url,
+                # url을 image viewer url로 하면 더 깔끔할듯
                 "width": 640,
                 "height": 480
             },
