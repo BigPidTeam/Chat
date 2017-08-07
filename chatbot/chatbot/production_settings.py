@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$d0vt)axcw-zkush#-w*-@r-76b6axs+dvzn8tbnh=mxxy#adu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'answer',
-    'raven.contrib.django.raven_compat',
+    # 'raven.contrib.django.raven_compat',
 ]
 
 MIDDLEWARE = [
@@ -53,8 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'raven.contrib.django.raven_compat.middleware.Sentry404CatchMiddleware',
-    'raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware',
+    # 'raven.contrib.django.raven_compat.middleware.Sentry404CatchMiddleware',
+    # 'raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware',
 ]
 
 ROOT_URLCONF = 'chatbot.urls'
@@ -77,12 +77,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'chatbot.wsgi.application'
 
-RAVEN_CONFIG = {
-    'dsn': 'https://2b33bced4571410da05b41e017bfb613:c042c07b5b1a4deab866dc3b0875edb3@sentry.io/200408',
-    # If you are using git, you can also automatically configure the
-    # release based on the git info.
-    # 'release': raven.fetch_git_sha('/home/ubuntu/Chat'),
-}
+# RAVEN_CONFIG = {
+#     'dsn': 'https://2b33bced4571410da05b41e017bfb613:c042c07b5b1a4deab866dc3b0875edb3@sentry.io/200408',
+#     # If you are using git, you can also automatically configure the
+#     # release based on the git info.
+#     # 'release': raven.fetch_git_sha('/home/ubuntu/Chat'),
+# }
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
