@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from answer.models import Test
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 import json, datetime
 
 
@@ -16,7 +16,7 @@ def keyboard(request):
     })
 
 
-@csrf_protect
+@csrf_exempt
 def answer(request):
     json_str = ((request.body).decode('utf-8'))
     received_json_data = json.loads(json_str)
