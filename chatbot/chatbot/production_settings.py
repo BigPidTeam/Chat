@@ -28,6 +28,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 # Application definition
 
@@ -47,7 +49,6 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.middleware.csrf.CsrfResponseMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
