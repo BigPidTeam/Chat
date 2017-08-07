@@ -27,8 +27,8 @@
       <file leaf-file-name="production_settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/chatbot/chatbot/production_settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1815">
-              <caret line="121" column="0" lean-forward="true" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+            <state relative-caret-position="251">
+              <caret line="81" column="58" lean-forward="true" selection-start-line="81" selection-start-column="58" selection-end-line="81" selection-end-column="58" />
               <folding>
                 <element signature="e#311#320#0" expanded="true" />
               </folding>
@@ -242,7 +242,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -310,8 +312,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/chatbot/chatbot/production_settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1815">
-          <caret line="121" column="0" lean-forward="true" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+        <state relative-caret-position="251">
+          <caret line="81" column="58" lean-forward="true" selection-start-line="81" selection-start-column="58" selection-end-line="81" selection-end-column="58" />
           <folding>
             <element signature="e#311#320#0" expanded="true" />
           </folding>
