@@ -77,7 +77,7 @@ RAVEN_CONFIG = {
     'dsn': 'https://2b33bced4571410da05b41e017bfb613:c042c07b5b1a4deab866dc3b0875edb3@sentry.io/200408',
     # If you are using git, you can also automatically configure the
     # release based on the git info.
-    'release': raven.fetch_git_sha('/home/ubuntu/Chat'),
+    # 'release': raven.fetch_git_sha('/home/ubuntu/Chat'),
 }
 
 # Database
