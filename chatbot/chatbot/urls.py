@@ -15,11 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from answer.views import keyboard, answer
+from answer.views import keyboard, message
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^keyboard/', keyboard),
-    url(r'^message', answer),
+    url(r'^message', message),
 ]
