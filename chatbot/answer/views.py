@@ -44,7 +44,7 @@ def message(request):
             'keyboard': {
                 'type': 'buttons',
                 'buttons': ['galaxy', 'bega', 'sony']
-            },
+            }
             # "photo": {
             #     "url": test.testPhoto.url,
             #     "width": 640,
