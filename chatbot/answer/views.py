@@ -9,8 +9,6 @@ import json
 def keyboard(request):
     test = Test.objects.all().first()
     test_label = test.test
-    print(test.testPhoto.url)
-    print(settings.BASE_DIR)
     return JsonResponse({
         'type': 'buttons',
         'buttons': ['1', '2', test_label]
@@ -29,7 +27,7 @@ def message(request):
         'message': {
             'text': return_str,
             "photo": {
-                "url": test.testPhoto.url,
+                "url": "http://ec2-13-124-156-121.ap-northeast-2.compute.amazonaws.com" + test.testPhoto.url,
                 "width": 640,
                 "height": 480
             },
