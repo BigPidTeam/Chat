@@ -16,7 +16,7 @@ def keyboard(request):
                 'buttons': ['galaxy', 'bega', 'sony']
             },
             "photo": {
-                "url": test.testPhoto.url,
+                "url": 'https://www.google.co.kr/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwi0sv3zv8XVAhVGUZQKHfgiCXIQjRwIBw&url=http%3A%2F%2F33jaeseok.tistory.com%2F1199&psig=AFQjCNG4glDsECDsxwx-oOya2OElC2suwg&ust=1502208234269956',
                 "width": 640,
                 "height": 480
             }

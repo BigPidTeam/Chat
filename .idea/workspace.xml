@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d9e1d07-3326-44a5-b4b9-ac9029d5da95" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/chatbot/static/uploads/퍼셉트론.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chatbot/db.sqlite3" afterPath="$PROJECT_DIR$/chatbot/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chatbot/answer/views.py" afterPath="$PROJECT_DIR$/chatbot/answer/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chatbot/chatbot/settings.py" afterPath="$PROJECT_DIR$/chatbot/chatbot/settings.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -64,8 +61,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/chatbot/answer/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+            <state relative-caret-position="300">
+              <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -92,8 +89,8 @@
         <option value="$PROJECT_DIR$/chatbot/chatbot/production_settings.py" />
         <option value="$PROJECT_DIR$/chatbot/chatbot/urls.py" />
         <option value="$PROJECT_DIR$/chatbot/chatbot/wsgi.py" />
-        <option value="$PROJECT_DIR$/chatbot/answer/views.py" />
         <option value="$PROJECT_DIR$/chatbot/chatbot/settings.py" />
+        <option value="$PROJECT_DIR$/chatbot/answer/views.py" />
       </list>
     </option>
   </component>
@@ -499,8 +496,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/chatbot/answer/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+        <state relative-caret-position="300">
+          <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
