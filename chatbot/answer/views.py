@@ -6,35 +6,30 @@ import json, datetime
 
 
 def keyboard(request):
-
-    test = Test.objects.all().first()
-    text = test.test
-
     return JsonResponse({
-        'type' : 'buttons',
-        'buttons' : ['test1', 'test2', text]
+        'type': 'buttons',
+        'buttons': ['1', '2']
     })
 
 
 @csrf_exempt
 def message(request):
-    # json_str = ((request.body).decode('utf-8'))
-    # received_json_data = json.loads(json_str)
-    # cafeteria_name = received_json_data['content']
-    # today_date = datetime.date.today().strftime("%m월 %d일")
+    message = ((request.body).decode('utf-8'))
+    return_json_str = json.loads(message)
+    return_str = return_json_str['content']
 
     return JsonResponse({
         'message': {
-            'text': 'hello world'
+            'text': "you type " + return_str + "!"
         },
         'keyboard': {
             'type': 'buttons',
-            'buttons': ['상록원', '그루터기', '아리수', '기숙사식당', '교직원식당']
+            'buttons': ['1', '2']
         }
-
     })
 
-# @csrf_exempt
+
+    # @csrf_exempt
 # def answer(request):
 #     if request.POST:
 #         json_str = ((request.body).decode('utf-8'))
