@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d9e1d07-3326-44a5-b4b9-ac9029d5da95" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chatbot/answer/views.py" afterPath="$PROJECT_DIR$/chatbot/answer/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chatbot/chatbot/production_settings.py" afterPath="$PROJECT_DIR$/chatbot/chatbot/production_settings.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,8 +27,8 @@
       <file leaf-file-name="production_settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/chatbot/chatbot/production_settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="92" column="53" lean-forward="true" selection-start-line="92" selection-start-column="53" selection-end-line="92" selection-end-column="53" />
+            <state relative-caret-position="454">
+              <caret line="64" column="19" lean-forward="true" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="19" />
               <folding>
                 <element signature="e#311#320#0" expanded="true" />
               </folding>
@@ -89,8 +88,8 @@
         <option value="$PROJECT_DIR$/chatbot/answer/admin.py" />
         <option value="$PROJECT_DIR$/chatbot/answer/models.py" />
         <option value="$PROJECT_DIR$/chatbot/chatbot/urls.py" />
-        <option value="$PROJECT_DIR$/chatbot/chatbot/production_settings.py" />
         <option value="$PROJECT_DIR$/chatbot/answer/views.py" />
+        <option value="$PROJECT_DIR$/chatbot/chatbot/production_settings.py" />
       </list>
     </option>
   </component>
@@ -458,8 +457,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/chatbot/chatbot/production_settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="92" column="53" lean-forward="true" selection-start-line="92" selection-start-column="53" selection-end-line="92" selection-end-column="53" />
+        <state relative-caret-position="454">
+          <caret line="64" column="19" lean-forward="true" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="19" />
           <folding>
             <element signature="e#311#320#0" expanded="true" />
           </folding>
