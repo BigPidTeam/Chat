@@ -45,9 +45,9 @@ def message(request):
                 'type': 'buttons',
                 'buttons': ['galaxy', 'bega', 'sony']
             },
-            "photo": {
-                "url": test.testPhoto.url,
-                "width": 640,
-                "height": 480
-            },
+            # "photo": {
+            #     "url": test.testPhoto.url,
+            #     "width": 640,
+            #     "height": 480
+            # },
         })
