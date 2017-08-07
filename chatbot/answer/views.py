@@ -27,7 +27,7 @@ def message(request):
         'message': {
             'text': return_str,
             "photo": {
-                "url": settings.BASE_DIR + test.testPhoto.url,
+                "url": "http://ec2-13-124-156-121.ap-northeast-2.compute.amazonaws.com"+ test.testPhoto.url,
                 "width": 640,
                 "height": 480
             },

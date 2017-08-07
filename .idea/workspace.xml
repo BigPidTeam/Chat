@@ -62,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/chatbot/answer/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="435">
-              <caret line="29" column="62" lean-forward="true" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="62" />
+              <caret line="29" column="108" lean-forward="true" selection-start-line="29" selection-start-column="108" selection-end-line="29" selection-end-column="108" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -497,7 +497,7 @@
     <entry file="file://$PROJECT_DIR$/chatbot/answer/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
-          <caret line="29" column="62" lean-forward="true" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="62" />
+          <caret line="29" column="108" lean-forward="true" selection-start-line="29" selection-start-column="108" selection-end-line="29" selection-end-column="108" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
