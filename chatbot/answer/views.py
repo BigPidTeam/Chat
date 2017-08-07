@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from answer.models import Test
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
 import json
 
 
@@ -26,7 +27,7 @@ def message(request):
         'message': {
             'text': return_str,
             "photo": {
-                "url": test.testPhoto.url,
+                "url": settings.BASE_DIR + test.testPhoto.url,
                 "width": 640,
                 "height": 480
             },
