@@ -16,6 +16,7 @@ def keyboard(request):
 
 @csrf_exempt
 def message(request):
+    test = Test.objects.all().first()
     message = ((request.body).decode('utf-8'))
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
@@ -23,7 +24,12 @@ def message(request):
     return JsonResponse({
 
         'message': {
-            'text': return_str
+            'text': return_str,
+            "photo": {
+                "url": test.testPhoto.url,
+                "width": 640,
+                "height": 480
+            },
         },
 
         'keyboard': {
