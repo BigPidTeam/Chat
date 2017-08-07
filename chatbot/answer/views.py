@@ -6,9 +6,20 @@ import json, datetime
 
 
 def keyboard(request):
+    test = Test.objects.all().first()
     return JsonResponse({
-        'type': 'buttons',
-        'buttons': ['1', '2']
+        'message': {
+                'text': ['1', '2']
+            },
+            'keyboard': {
+                'type': 'buttons',
+                'buttons': ['galaxy', 'bega', 'sony']
+            },
+            "photo": {
+                "url": test.testPhoto.url,
+                "width": 640,
+                "height": 480
+            }
     })
 
 
