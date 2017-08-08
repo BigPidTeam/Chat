@@ -22,23 +22,55 @@ def message(request):
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
 
-    return JsonResponse({
+    return_type = return_json_str['type'] ##
+    print (return_type) ##
 
-        'message': {
-            'text': return_str,
-            "photo": {
-                "url": "http://ec2-13-124-156-121.ap-northeast-2.compute.amazonaws.com" + test.testPhoto.url,
-                # url을 image viewer url로 하면 더 깔끔할듯
-                "width": 640,
-                "height": 480
+    if return_str == 'hello world!': # 응답에 대한 미러링과 버튼 제공
+        return JsonResponse({
+
+            'message': {
+                'text': return_str,
             },
-        },
 
-        'keyboard': {
-            'type': 'buttons',
-            'buttons': ['galaxy', 'bega', 'sony']
-        }
-    })
+            'keyboard': {
+                'type': 'buttons',
+                'buttons': ['galaxy', 'bega', 'sony']
+            }
+        })
+    else: # 응답에 대한 미러링과 사진, 텍스트 입력 제공
+        return JsonResponse({
+
+            'message': {
+                'text': return_str,
+                "photo": {
+                    "url": "http://ec2-13-124-156-121.ap-northeast-2.compute.amazonaws.com" + test.testPhoto.url,
+                    # url을 image viewer url로 하면 더 깔끔할듯
+                    "width": 640,
+                    "height": 480
+                },
+            },
+
+            'keyboard': {
+                'type': 'text'
+            }
+        })
+    # return JsonResponse({
+    #
+    #     'message': {
+    #         'text': return_str,
+    #         "photo": {
+    #             "url": "http://ec2-13-124-156-121.ap-northeast-2.compute.amazonaws.com" + test.testPhoto.url,
+    #             # url을 image viewer url로 하면 더 깔끔할듯
+    #             "width": 640,
+    #             "height": 480
+    #         },
+    #     },
+    #
+    #     'keyboard': {
+    #         'type': 'buttons',
+    #         'buttons': ['galaxy', 'bega', 'sony']
+    #     }
+    # })
 
 
     # 응답타입 체크 : content가 "삼성", "엘지" 이런거라면 check_type = maker
