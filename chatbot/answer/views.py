@@ -24,12 +24,23 @@ def message(request):  # 버튼을 누르면 message 함수로 이동
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
     print(return_str) # 실험
-    print(123)
+
     # return_type = return_json_str['type'] # 어떤 타입을 리턴하는지`
     # print (return_type) ##
 
     if return_str == '시작하기':  # 응답에 대한 미러링과 버튼 제공
-        start(return_str)
+        return JsonResponse({
+            'message': {
+                'text': return_str + "를 선택하셨습니다. 핸드폰의 제조사를 선택하여 주세요",
+            },
+            'keyboard': {
+                'type': 'buttons',
+                'buttons': ['삼성', '애플', 'LG', '화웨이', '기타'],  # 변수를 저장.
+            },
+            # 함수 삽입 가능여부. 안된다면 여기에 코드 전개가 가능한지 여부. (message와, keyboard를 사용하여)
+            # 입력받은 변수를 저장해서 그 변수를 check_is_maker()의 인자로 보냄
+        })
+
     elif return_str == '도움말':
         help(return_str)
     elif return_str == '삼성' | '애플' | 'LG' | '기타': # 제조사 선택
