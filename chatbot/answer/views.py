@@ -24,7 +24,7 @@ def message(request):  # 버튼을 누르면 message 함수로 이동
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
     print(return_str) # 실험
-
+    print(123)
     # return_type = return_json_str['type'] # 어떤 타입을 리턴하는지`
     # print (return_type) ##
 
