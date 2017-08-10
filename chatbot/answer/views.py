@@ -9,14 +9,9 @@ import json
 
 # 카카오톡에서 keyboard 함수를 검색
 def keyboard(request):
-    return JsonResponse({
-        'message': {
-            'text': "어서와",
-        },
-        'keyboard': {
-            'type': 'buttons',
-            'buttons': ["시작하기", "도움말"],
-        },
+    return JsonResponse({  # JSON타입으로 반환
+        'type': 'buttons',
+        'buttons': ['시작하기', '도움말']  # 채팅에 접속하면 2개의 버튼이 존재
     })
 
 
@@ -32,7 +27,7 @@ def message(request):  # 버튼을 누르면 message 함수로 이동
     if start:  # 응답에 대한 미러링과 버튼 제공
         return JsonResponse({
             'message': {
-                'text': "핸드폰의 제조사를 선택하여 주세요",
+                'text': "hello user, choice the maker",
             },
             'keyboard': {
                 'type': 'buttons',
