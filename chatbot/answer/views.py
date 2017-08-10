@@ -42,7 +42,7 @@ def message(request):  # 버튼을 누르면 message 함수로 이동
         })
 
     elif return_str == '도움말':
-        help(return_str)
+        help()
     elif return_str == '삼성' | '애플' | 'LG' | '기타': # 제조사 선택
         check_is_maker(return_str)
     elif return_str == '갤럭시 6' | '갤럭시 7' | '갤럭시 8': # 모델 선택
