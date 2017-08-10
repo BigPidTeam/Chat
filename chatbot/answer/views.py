@@ -2,15 +2,14 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from answer.models import Maker
+from answer.models import PhoneModel
+from answer.models import Capacity
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 import json
 
 
 # conversation start
-from chatbot.answer.models import PhoneModel
-
-
 def keyboard(request):
     return JsonResponse({
         'type': 'buttons',
