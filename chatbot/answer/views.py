@@ -53,7 +53,7 @@ def message(request):  # 버튼을 누르면 message 함수로 이동
             # 시작하기/도움말 화면으로 이동(버튼)
             'keyboard': {
                 'type': 'buttons',
-                'buttons': ['돌아가기'],
+                'buttons': ['갤럭시 s6', '갤럭시 s7', '갤럭시 s8', '돌아가기'],
                 # keyboard(request) 초기화면으로 돌아가는것 알아보기
             },
         })
@@ -97,26 +97,18 @@ def message(request):  # 버튼을 누르면 message 함수로 이동
                 # keyboard(request) 초기화면으로 돌아가는것 알아보기
             },
         })
-    elif return_str == '갤럭시 6' | '갤럭시 7' | '갤럭시 8': # 모델 선택
-        check_is_model(return_str)
     else:
         return JsonResponse({
-
             'message': {
-                'text': return_str,
-                "photo": {
-                    "url": "http://ec2-13-124-156-121.ap-northeast-2.compute.amazonaws.com" + test.testPhoto.url,
-                    # url을 image viewer url로 하면 더 깔끔할듯
-                    "width": 640,
-                    "height": 480
-                },
+                'text': return_str + "를 선택하셨습니다. 초기화면으로 돌아갑니다.",
             },
-
             'keyboard': {
-                'type': 'text'
-            }
+                'type': 'buttons',
+                'buttons': ['시작하기', '도움말'],  # 변수를 저장.
+            },
+            # 함수 삽입 가능여부. 안된다면 여기에 코드 전개가 가능한지 여부. (message와, keyboard를 사용하여)
+            # 입력받은 변수를 저장해서 그 변수를 check_is_maker()의 인자로 보냄
         })
-
 def start(return_str):
     return JsonResponse({
         'message': {
