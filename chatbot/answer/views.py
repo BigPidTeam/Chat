@@ -8,6 +8,9 @@ import json
 
 
 # conversation start
+from chatbot.answer.models import PhoneModel
+
+
 def keyboard(request):
     return JsonResponse({
         'type': 'buttons',
@@ -34,6 +37,16 @@ def message(request):
             'keyboard': {
                 'type': 'buttons',
                 'buttons': list(Maker.objects.values_list('makerName', flat=True)),  # 변수를 저장.
+            },
+        })
+    if maker:
+        return JsonResponse({
+            'message': {
+                'text': return_str + "의 어떤 기종을 선택하시겠습니까?",
+            },
+            'keyboard': {
+                'type': 'buttons',
+                'buttons': list(PhoneModel.objects.values_list('modelName',fiat = True)),  # 변수를 저장.
             },
         })
 
