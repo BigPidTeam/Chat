@@ -23,7 +23,7 @@ class PhoneModel(TimeStampedModel):
     modelPhoto = models.ImageField(null=True, blank=True)
 
     def __str__(self):
-        return self.maker + " / " + self.modelName
+        return self.maker.makerName+ " / " + self.modelName
 
 
 class Capacity(TimeStampedModel):
@@ -32,4 +32,4 @@ class Capacity(TimeStampedModel):
     modelGBPhoto = models.ImageField(null=True, blank=True)
 
     def __str__(self):
-        return self.model + " / " + self.modelGB
+        return self.model.maker.makerName + " / " + self.model.modelName + " / " + self.modelGB
