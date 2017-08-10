@@ -97,6 +97,25 @@ def message(request):  # 버튼을 누르면 message 함수로 이동
                 # keyboard(request) 초기화면으로 돌아가는것 알아보기
             },
         })
+    elif return_str == '갤럭시 s6':
+        return JsonResponse({
+
+            'message': {
+                'text': return_str + '의 평균가격은 452,300원입니다. ' + return_str + '의 최고가격은 772,100원입니다. '
+                        + return_str + '의 최저가격은 191,600원입니다. ',
+                "photo": {
+                    "url": "http://ec2-13-124-156-121.ap-northeast-2.compute.amazonaws.com" + test.testPhoto.url,
+                    # url을 image viewer url로 하면 더 깔끔할듯
+                    "width": 640,
+                    "height": 480
+                },
+            },
+
+            'keyboard': {
+                'type': 'buttons',
+                'buttons': ['다른기종 알아보기', '더 자세히 보기']
+            }
+        })
     else:
         return JsonResponse({
             'message': {
