@@ -10,8 +10,13 @@ import json
 # 카카오톡에서 keyboard 함수를 검색
 def keyboard(request):
     return JsonResponse({
-        'type': 'buttons',
-        'buttons': ['시작하기', '도움말']
+        'message': {
+            'text': "어서와",
+        },
+        'keyboard': {
+            'type': 'buttons',
+            'buttons': ["시작하기", "도움말"],
+        },
     })
 
 
@@ -21,12 +26,13 @@ def message(request):  # 버튼을 누르면 message 함수로 이동
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
 
+    start = check_is_start(return_str)
     maker = check_is_maker(return_str)
 
-    if maker:  # 응답에 대한 미러링과 버튼 제공
+    if start:  # 응답에 대한 미러링과 버튼 제공
         return JsonResponse({
             'message': {
-                'text': return_str + "를 선택하셨습니다. 핸드폰의 제조사를 선택하여 주세요",
+                'text': "핸드폰의 제조사를 선택하여 주세요",
             },
             'keyboard': {
                 'type': 'buttons',
@@ -35,21 +41,18 @@ def message(request):  # 버튼을 누르면 message 함수로 이동
             # 함수 삽입 가능여부. 안된다면 여기에 코드 전개가 가능한지 여부. (message와, keyboard를 사용하여)
             # 입력받은 변수를 저장해서 그 변수를 check_is_maker()의 인자로 보냄
         })
-    else:
-        return JsonResponse({
-            'message': {
-                'text': "gello",
-            },
-            'keyboard': {
-                'type': 'buttons',
-                'buttons': ['시작하기', '도움말']  # 채팅에 접속하면 2개의 버튼이 존재
-            },
-        })
 
 
 def check_is_maker(str):
     makers = Maker.objects.values_list('makerName', flat=True)
     if str in makers:
+        return True
+    else:
+        return False
+
+
+def check_is_start(str):
+    if str == "시작하기":
         return True
     else:
         return False
