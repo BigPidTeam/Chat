@@ -17,3 +17,8 @@ class Maker(TimeStampedModel):
 class PhoneModel(TimeStampedModel):
     modelName = models.TextField(default="")
     modelPhoto = models.ImageField(null=True, blank=True)
+
+
+class Capacity(TimeStampedModel):
+    modelGB = models.TextField(default="")
+    modelGBPhoto = models.ImageField(null=True, blank=True)
