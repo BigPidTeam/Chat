@@ -31,7 +31,7 @@ def message(request):
     if start:
         return JsonResponse({
             'message': {
-                'text': "hello user, choice the maker",
+                'text': "얼마고를 시작합니다. 핸드폰 기종을 선택하여 주세요!",
             },
             'keyboard': {
                 'type': 'buttons',
@@ -45,7 +45,7 @@ def message(request):
             },
             'keyboard': {
                 'type': 'buttons',
-                'buttons': list(PhoneModel.objects.values_list('modelName',fiat = True)),  # 변수를 저장.
+                'buttons': list(PhoneModel.objects.values_list('modelName',flat = True)),  # 변수를 저장.
             },
         })
 
