@@ -30,7 +30,7 @@ def message(request):  # 버튼을 누르면 message 함수로 이동
             },
             'keyboard': {
                 'type': 'buttons',
-                'buttons': Maker.objects.values_list('test', flat=True),  # 변수를 저장.
+                'buttons': Maker.objects.values_list('makerName', flat=True),  # 변수를 저장.
             },
             # 함수 삽입 가능여부. 안된다면 여기에 코드 전개가 가능한지 여부. (message와, keyboard를 사용하여)
             # 입력받은 변수를 저장해서 그 변수를 check_is_maker()의 인자로 보냄
@@ -48,7 +48,7 @@ def message(request):  # 버튼을 누르면 message 함수로 이동
 
 
 def check_is_maker(str):
-    makers = Maker.objects.values_list('test', flat=True)
+    makers = Maker.objects.values_list('makerName', flat=True)
     if str in makers:
         return True
     else:
