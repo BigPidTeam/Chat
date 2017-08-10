@@ -9,6 +9,11 @@ class TimeStampedModel(models.Model):
         abstract = True
 
 
-class Test(TimeStampedModel):
-    test = models.TextField(default="")
-    testPhoto = models.ImageField(null=True, blank=True)
+class Maker(TimeStampedModel):
+    makerName = models.TextField(default="")
+    makerPhoto = models.ImageField(null=True, blank=True)
+
+
+class PhoneModel(TimeStampedModel):
+    modelName = models.TextField(default="")
+    modelPhoto = models.ImageField(null=True, blank=True)

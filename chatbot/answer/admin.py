@@ -1,10 +1,16 @@
 from django.contrib import admin
-from answer.models import Test
+from answer.models import Maker, PhoneModel
 
 
-class TestAdmin(admin.ModelAdmin):
-    model = Test
-    list_display = ('test', 'created', 'modified')
+class MakerAdmin(admin.ModelAdmin):
+    model = Maker
+    list_display = ('makerName', 'created', 'modified')
 
 
-admin.site.register(Test, TestAdmin)
+class PhoneModelAdmin(admin.ModelAdmin):
+    model = PhoneModel
+    list_display = ('modelName', 'created', 'modified')
+
+
+admin.site.register(Maker, MakerAdmin)
+admin.site.register(PhoneModel, PhoneModelAdmin)
