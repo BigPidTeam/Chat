@@ -35,7 +35,7 @@ def message(request):
             },
             'keyboard': {
                 'type': 'buttons',
-                'buttons': list(Maker.objects.values_list('makerName', flat=True)),  # 변수를 저장.
+                'buttons': list(Maker.objects.values_list('makerName',  flat=True)),  # 변수를 저장.
             },
         })
     if maker:
@@ -45,10 +45,20 @@ def message(request):
             },
             'keyboard': {
                 'type': 'buttons',
-                'buttons': list(Maker.objects.values_list('modelName',flat = True)),  # 변수를 저장.
+                'buttons': list(PhoneModel.objects.values_list('modelName', flat=True)),  # 변수를 저장.
             },
         })
-    
+    if model:
+        return JsonResponse({
+            'message': {
+                'text': return_str + "의 용량을 선택하여 주세요. 아무 용량이나 상관 없다면 용량선택안함을 눌러주세요",
+            },
+            'keyboard': {
+                'type': 'buttons',
+                'buttons': list(Capacity.objects.values_list('modelGB',flat = True)),  # 변수를 저장.
+            },
+        })
+
     else:
         return JsonResponse({
             'message': {
