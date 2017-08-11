@@ -11,6 +11,8 @@ import json
 
 # conversation start
 def keyboard(request):
+    test = Test.objects.all().first()  # DB의 DATA를 불러오는 부분 #
+    test_label = test.test #
     return JsonResponse({
         'type': 'buttons',
         'buttons': ['시작하기', '도움말'] # start button for user
