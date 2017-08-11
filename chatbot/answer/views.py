@@ -13,6 +13,7 @@ import json
 def keyboard(request):
     # test = Test.objects.all().first()
     # test_label = test.test
+
     return JsonResponse({
         'type': 'buttons',
         'buttons': ['시작하기', '도움말'] # start button for user
@@ -24,13 +25,11 @@ def keyboard(request):
 def message(request):
     message = ((request.body).decode('utf-8'))
     return_str = ''
-    temp1 = ''
-    temp2 = ''
     if bool(temp1) is True:
         temp2 = temp1
     if bool(return_str) is True:
         temp1 = return_str
-    
+
 
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
