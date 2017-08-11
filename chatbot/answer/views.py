@@ -26,7 +26,7 @@ def message(request):
 
     start = check_is_start(return_str) # check is start state
     maker = check_is_maker(return_str) # check is choice maker state
-
+    model = check_is_model(return_str) # model check
     # if start button check
     if start:
         return JsonResponse({
@@ -45,10 +45,26 @@ def message(request):
             },
             'keyboard': {
                 'type': 'buttons',
+                'buttons': list(Maker.objects.values_list('modelName',flat = True)),  # 변수를 저장.
+            },
+        })
+    if model:
+        return JsonResponse({
+            'message': {
+                'text': return_str + "의 용량을 선택하여 주세요. 아무 용량이나 상관 없다면 용량선택안함을 눌러주세요",
+            },
+            'keyboard': {
+                'type': 'buttons',
                 'buttons': list(PhoneModel.objects.values_list('modelName',flat = True)),  # 변수를 저장.
             },
         })
 
+    else:
+        return JsonResponse({
+            'message': {
+                'text': "처음화면으로 돌아갑니다.",
+            },
+        })
 
 # user input is maker button check
 def check_is_maker(str):
@@ -67,8 +83,12 @@ def check_is_start(str):
         return False
 
 
-
-
+def check_is_model(str):
+    models = PhoneModel.objects.values_list('modelName', flat=True)
+    if str in models:
+        return True
+    else:
+        return False
 
 
 # 코딩 아이디어 메모
