@@ -28,6 +28,7 @@ def message(request):
     maker = check_is_maker(return_str) # check is choice maker state
     model = check_is_model(return_str) # model check
     capacity = check_is_capacity(return_str) # capacity check
+
     # if start button check
     if start:
         return JsonResponse({
@@ -104,6 +105,15 @@ def check_is_maker(str):
         return False
 
 
+# user input is maker button check
+def check_is_maker(str):
+    models = PhoneModel.objects.values_list('modelName', flat=True)
+    if str in models:
+        return True
+    else:
+        return False
+
+
 def check_is_capacity(str):
     capacities = Capacity.objects.values_list('modelGB', flat=True)
     if str in capacities:
@@ -111,7 +121,6 @@ def check_is_capacity(str):
     else:
         return False
 
-        capacity = check_is_capacity(return_str)
 # 코딩 아이디어 메모
 
 # return JsonResponse({
