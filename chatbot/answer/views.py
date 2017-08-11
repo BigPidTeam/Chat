@@ -27,7 +27,6 @@ def message(request):
     return_str = ''
     if bool(return_str) is True:
         temp1 = return_str
-        temp2 = temp1
 
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
@@ -76,7 +75,7 @@ def message(request):
     if capacity:
         return JsonResponse({
             'message': {
-                'text': temp2 + temp1 + return_str + "의 평균 가격은 503221 입니다. 최고가격은 82921 입니다. 최저가격은 29339입니다.",
+                'text': temp1 + return_str + "의 평균 가격은 503221 입니다. 최고가격은 82921 입니다. 최저가격은 29339입니다.",
             },
     #        "photo": {
     #            "url": "http://ec2-13-124-156-121.ap-northeast-2.compute.amazonaws.com" + test.testPhoto.url,
