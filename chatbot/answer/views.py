@@ -48,17 +48,7 @@ def message(request):
                 'buttons': list(Maker.objects.values_list('modelName',flat = True)),  # 변수를 저장.
             },
         })
-    if model:
-        return JsonResponse({
-            'message': {
-                'text': return_str + "의 용량을 선택하여 주세요. 아무 용량이나 상관 없다면 용량선택안함을 눌러주세요",
-            },
-            'keyboard': {
-                'type': 'buttons',
-                'buttons': list(PhoneModel.objects.values_list('modelName',flat = True)),  # 변수를 저장.
-            },
-        })
-
+    
     else:
         return JsonResponse({
             'message': {
@@ -66,18 +56,19 @@ def message(request):
             },
         })
 
-# user input is maker button check
-def check_is_maker(str):
-    makers = Maker.objects.values_list('makerName', flat=True)
-    if str in makers:
+
+# user input is start button check
+def check_is_start(str):
+    if str == "시작하기":
         return True
     else:
         return False
 
 
-# user input is start button check
-def check_is_start(str):
-    if str == "시작하기":
+# user input is maker button check
+def check_is_maker(str):
+    makers = Maker.objects.values_list('makerName', flat=True)
+    if str in makers:
         return True
     else:
         return False
