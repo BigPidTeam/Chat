@@ -23,8 +23,10 @@ def keyboard(request):
 @csrf_exempt
 def message(request):
     message = ((request.body).decode('utf-8'))
-    temp2 = temp1
-    temp1 = return_str
+    if temp1:
+        temp2 = temp1
+    if return_str:
+        temp1 = return_str
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
 
