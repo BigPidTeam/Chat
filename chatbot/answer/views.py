@@ -27,8 +27,6 @@ def message(request):
 
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
-    if bool(return_str) is True:
-        temp1 = return_str
 
     start = check_is_start(return_str) # check is start state
     maker = check_is_maker(return_str) # check is choice maker state
@@ -39,6 +37,8 @@ def message(request):
 
     # if start button check
     if start:
+        global temp1
+        temp1 = return_str
         return JsonResponse({
             'message': {
                 'text': "얼마고를 시작합니다. 핸드폰 기종을 선택하여 주세요!",
