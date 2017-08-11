@@ -45,6 +45,9 @@ def message(request):
             },
         })
     if maker:
+        global temp1
+        temp1 = ''
+        temp1 = return_str
         return JsonResponse({
             'message': {
                 'text': return_str + "의 어떤 기종을 선택하시겠습니까?",
@@ -57,9 +60,12 @@ def message(request):
             },
         })
     if model:
+        global temp2
+        temp2 = ''
+        temp2 = return_str
         return JsonResponse({
             'message': {
-                'text': temp1 + return_str + "의 용량을 선택하여 주세요. 아무 용량이나 상관 없다면 용량선택안함을 눌러주세요",
+                'text': temp1 + " " + return_str + "의 용량을 선택하여 주세요. 아무 용량이나 상관 없다면 용량선택안함을 눌러주세요",
             },
             'keyboard': {
                 'type': 'buttons',
@@ -69,7 +75,7 @@ def message(request):
     if capacity:
         return JsonResponse({
             'message': {
-                'text': temp1 + return_str + "의 평균 가격은 503221 입니다. 최고가격은 82921 입니다. 최저가격은 29339입니다.",
+                'text': temp1 + " " + temp2 + " " + return_str + "의 평균 가격은 503221 입니다. 최고가격은 82921 입니다. 최저가격은 29339입니다.",
             },
     #        "photo": {
     #            "url": "http://ec2-13-124-156-121.ap-northeast-2.compute.amazonaws.com" + test.testPhoto.url,
@@ -104,10 +110,6 @@ def check_is_start(str):
 
 # user input is maker button check
 def check_is_maker(str):
-    global temp1
-    temp1 = ''
-    temp1 = return_str
-
     makers = Maker.objects.values_list('makerName', flat=True)
     if str in makers:
         return True
