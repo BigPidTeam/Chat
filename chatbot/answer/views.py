@@ -11,8 +11,8 @@ import json
 
 # conversation start
 def keyboard(request):
-    test = Test.objects.all().first()  # DB의 DATA를 불러오는 부분 #
-    test_label = test.test #
+    # test = Test.objects.all().first()
+    # test_label = test.test
     return JsonResponse({
         'type': 'buttons',
         'buttons': ['시작하기', '도움말'] # start button for user
@@ -31,7 +31,7 @@ def message(request):
     model = check_is_model(return_str) # model check
     capacity = check_is_capacity(return_str) # capacity check
 
-    test = Test.objects.all().first()
+    # test = Test.objects.all().first()
 
     # if start button check
     if start:
@@ -70,11 +70,11 @@ def message(request):
             'message': {
                 'text': return_str + "의 평균 가격은 503221 입니다. 최고가격은 82921 입니다. 최저가격은 29339입니다.",
             },
-            "photo": {
-                "url": "http://ec2-13-124-156-121.ap-northeast-2.compute.amazonaws.com" + test.testPhoto.url,
-                "width": 640,
-                "height": 480
-            },
+    #        "photo": {
+    #            "url": "http://ec2-13-124-156-121.ap-northeast-2.compute.amazonaws.com" + test.testPhoto.url,
+    #            "width": 640,
+    #            "height": 480
+    #        },
             'keyboard': {
                 'type': 'buttons',
                 'buttons':  ['시작하기', '도움말']
