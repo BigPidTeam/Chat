@@ -24,13 +24,11 @@ def keyboard(request):
 @csrf_exempt
 def message(request):
     message = ((request.body).decode('utf-8'))
-    return_str = ''
-    if bool(return_str) is True:
-        temp1 = return_str
 
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
-
+    if bool(return_str) is True:
+        temp1 = return_str
 
     start = check_is_start(return_str) # check is start state
     maker = check_is_maker(return_str) # check is choice maker state
