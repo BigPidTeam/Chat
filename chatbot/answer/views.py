@@ -56,7 +56,7 @@ def message(request):
             },
             'keyboard': {
                 'type': 'buttons',
-                'buttons': list(PhoneModel.objects.values_list('modelName', check_is_maker(return_str == maker) ,flat=True)),  # DB에 접근.
+                'buttons': list(PhoneModel.objects.values_list('modelName', flat=True)),  # DB에 접근.
                 # return_str의 값과 PhoneModel의 값을 비교하여 알맞는것만 출력
                 # list
             },
