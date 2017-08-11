@@ -25,11 +25,9 @@ def keyboard(request):
 def message(request):
     message = ((request.body).decode('utf-8'))
     return_str = ''
-    if bool(temp1) is True:
-        temp2 = temp1
     if bool(return_str) is True:
         temp1 = return_str
-
+        temp2 = temp1
 
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
