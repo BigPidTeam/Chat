@@ -48,6 +48,7 @@ def message(request):
             'keyboard': {
                 'type': 'buttons',
                 'buttons': list(PhoneModel.objects.values_list('modelName', flat=True)),  # 변수를 저장.
+                # return_str의 값과 PhoneModel의 값을 비교하여 알맞는것만 출력
             },
         })
     if model:
@@ -65,11 +66,11 @@ def message(request):
             'message': {
                 'text': return_str + "의 평균 가격은 503221 입니다. 최고가격은 82921 입니다. 최저가격은 29339입니다.",
             },
-             'photo': {
-                 "url": "http://ec2-13-124-156-121.ap-northeast-2.compute.amazonaws.com" + test.testPhoto.url,
-                 "width": 640,
-                 "height": 480
-             },
+            "photo": {
+                "url": "http://ec2-13-124-156-121.ap-northeast-2.compute.amazonaws.com" + test.testPhoto.url,
+                "width": 640,
+                "height": 480
+            },
             'keyboard': {
                 'type': 'buttons',
                 'buttons':  ['시작하기', '도움말']
