@@ -27,6 +27,7 @@ def message(request):
     start = check_is_start(return_str) # check is start state
     maker = check_is_maker(return_str) # check is choice maker state
     model = check_is_model(return_str) # model check
+    capacity = check_is_capacity(return_str) # capacity check
     # if start button check
     if start:
         return JsonResponse({
@@ -58,11 +59,30 @@ def message(request):
                 'buttons': list(Capacity.objects.values_list('modelGB',flat = True)),  # 변수를 저장.
             },
         })
+    if capacity:
+        return JsonResponse({
+            'message': {
+                'text': return_str + "의 평균 가격은 503221 입니다. 최고가격은 82921 입니다. 최저가격은 29339입니다.",
+            },
+             'photo': {
+                 "url": "http://ec2-13-124-156-121.ap-northeast-2.compute.amazonaws.com" + test.testPhoto.url,
+                 "width": 640,
+                 "height": 480
+             },
+            'keyboard': {
+                'type': 'buttons',
+                'buttons':  ['시작하기', '도움말']
+            },
+        })
 
     else:
         return JsonResponse({
             'message': {
-                'text': "처음화면으로 돌아갑니다.",
+                'text': '다시시작합니다.',
+            },
+            'keyboard': {
+                'type': 'buttons',
+                'buttons': ['시작하기', '도움말']
             },
         })
 
@@ -84,14 +104,14 @@ def check_is_maker(str):
         return False
 
 
-def check_is_model(str):
-    models = PhoneModel.objects.values_list('modelName', flat=True)
-    if str in models:
+def check_is_capacity(str):
+    capacities = Capacity.objects.values_list('modelGB', flat=True)
+    if str in capacities:
         return True
     else:
         return False
 
-
+        capacity = check_is_capacity(return_str)
 # 코딩 아이디어 메모
 
 # return JsonResponse({
