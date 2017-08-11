@@ -48,13 +48,15 @@ def message(request):
         global temp1
         temp1 = ''
         temp1 = return_str
+
+# return_str 의 값과 makerName의 값이 같은 modelName만 출력
         return JsonResponse({
             'message': {
                 'text': return_str + "의 어떤 기종을 선택하시겠습니까?",
             },
             'keyboard': {
                 'type': 'buttons',
-                'buttons': list(PhoneModel.objects.values_list('modelName', flat=True)),  # DB에 접근.
+                'buttons': list(PhoneModel.objects.values_list('modelName',maker = return_str ,flat=True)),  # DB에 접근.
                 # return_str의 값과 PhoneModel의 값을 비교하여 알맞는것만 출력
                 # list
             },
@@ -63,6 +65,7 @@ def message(request):
         global temp2
         temp2 = ''
         temp2 = return_str
+
         return JsonResponse({
             'message': {
                 'text': temp1 + " " + return_str + "의 용량을 선택하여 주세요. 아무 용량이나 상관 없다면 용량선택안함을 눌러주세요",
