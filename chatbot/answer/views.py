@@ -23,8 +23,8 @@ def keyboard(request):
 @csrf_exempt
 def message(request):
     message = ((request.body).decode('utf-8'))
-    return_str = 0
-    temp1 = 0
+    return_str = ''
+    temp1 = ''
 
     if bool(return_str) is True:
         temp1 = return_str
