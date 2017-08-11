@@ -45,10 +45,6 @@ def message(request):
             },
         })
     if maker:
-        global temp1
-        temp1 = ''
-        temp1 = return_str
-
         return JsonResponse({
             'message': {
                 'text': return_str + "의 어떤 기종을 선택하시겠습니까?",
@@ -108,6 +104,10 @@ def check_is_start(str):
 
 # user input is maker button check
 def check_is_maker(str):
+    global temp1
+    temp1 = ''
+    temp1 = return_str
+
     makers = Maker.objects.values_list('makerName', flat=True)
     if str in makers:
         return True
