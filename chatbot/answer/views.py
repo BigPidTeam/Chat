@@ -8,7 +8,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 import json
 
-
 # conversation start
 def keyboard(request):
     # test = Test.objects.all().first()
@@ -28,17 +27,14 @@ def message(request):
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
 
-    start = check_is_start(return_str) # check is start state
-    maker = check_is_maker(return_str) # check is choice maker state
-    model = check_is_model(return_str) # model check
-    capacity = check_is_capacity(return_str) # capacity check
-
+    start = check_is_start(return_str)  # check is start state
+    maker = check_is_maker(return_str)  # check is choice maker state
+    model = check_is_model(return_str)  # model check
+    capacity = check_is_capacity(return_str)  # capacity check
     # test = Test.objects.all().first()
 
     # if start button check
     if start:
-        global temp1
-        temp1 = return_str
         return JsonResponse({
             'message': {
                 'text': "얼마고를 시작합니다. 핸드폰 기종을 선택하여 주세요!",
@@ -49,6 +45,10 @@ def message(request):
             },
         })
     if maker:
+        global temp1
+        temp1 = ''
+        temp1 = return_str
+
         return JsonResponse({
             'message': {
                 'text': return_str + "의 어떤 기종을 선택하시겠습니까?",
