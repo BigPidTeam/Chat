@@ -23,8 +23,11 @@ def keyboard(request):
 @csrf_exempt
 def message(request):
     message = ((request.body).decode('utf-8'))
+    temp2 = temp1
+    temp1 = return_str
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
+
 
     start = check_is_start(return_str) # check is start state
     maker = check_is_maker(return_str) # check is choice maker state
@@ -45,7 +48,6 @@ def message(request):
             },
         })
     if maker:
-        saved_maker = return_str
         return JsonResponse({
             'message': {
                 'text': return_str + "의 어떤 기종을 선택하시겠습니까?",
@@ -54,14 +56,13 @@ def message(request):
                 'type': 'buttons',
                 'buttons': list(PhoneModel.objects.values_list('modelName', flat=True)),  # DB에 접근.
                 # return_str의 값과 PhoneModel의 값을 비교하여 알맞는것만 출력
-                # list(클래스,
+                # list
             },
         })
     if model:
-        saved_model = return_str
         return JsonResponse({
             'message': {
-                'text': saved_maker + return_str + "의 용량을 선택하여 주세요. 아무 용량이나 상관 없다면 용량선택안함을 눌러주세요",
+                'text': temp1 + return_str + "의 용량을 선택하여 주세요. 아무 용량이나 상관 없다면 용량선택안함을 눌러주세요",
             },
             'keyboard': {
                 'type': 'buttons',
@@ -71,7 +72,7 @@ def message(request):
     if capacity:
         return JsonResponse({
             'message': {
-                'text': saved_maker + saved_model + return_str + "의 평균 가격은 503221 입니다. 최고가격은 82921 입니다. 최저가격은 29339입니다.",
+                'text': temp2 + temp1 + return_str + "의 평균 가격은 503221 입니다. 최고가격은 82921 입니다. 최저가격은 29339입니다.",
             },
     #        "photo": {
     #            "url": "http://ec2-13-124-156-121.ap-northeast-2.compute.amazonaws.com" + test.testPhoto.url,
