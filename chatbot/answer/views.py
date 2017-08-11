@@ -106,7 +106,7 @@ def check_is_maker(str):
 
 
 # user input is maker button check
-def check_is_maker(str):
+def check_is_model(str):
     models = PhoneModel.objects.values_list('modelName', flat=True)
     if str in models:
         return True
