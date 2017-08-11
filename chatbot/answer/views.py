@@ -29,6 +29,8 @@ def message(request):
     model = check_is_model(return_str) # model check
     capacity = check_is_capacity(return_str) # capacity check
 
+    test = Test.objects.all().first()
+
     # if start button check
     if start:
         return JsonResponse({
