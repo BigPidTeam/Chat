@@ -25,7 +25,7 @@ def message(request):
     message = ((request.body).decode('utf-8'))
     return_str = ''
     temp1 = ''
-
+    temp2 = ''
     if bool(return_str) is True:
         temp1 = return_str
     if bool(temp1) is True:
