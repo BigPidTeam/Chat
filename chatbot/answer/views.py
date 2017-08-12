@@ -31,7 +31,6 @@ def message(request):
         id = list(map(str, list(Maker.objects.values_list('id', flat=True))))
         name = list(map(str, list(Maker.objects.values_list('makerName', flat=True))))
         result = [i + "(" + j + ")" for i, j in zip(name, id)]
-
         return JsonResponse({
             'message': {
                 'text': "얼마고를 시작합니다. 핸드폰 기종을 선택하여 주세요!",
@@ -57,8 +56,7 @@ def message(request):
             },
         })
 
-    elif model:
-        print(model)
+    elif model[0]:
         phoneModel = PhoneModel.objects.get(id=model[1])
         return JsonResponse({
             'message': {
