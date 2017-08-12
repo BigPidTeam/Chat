@@ -45,7 +45,7 @@ def message(request):
     elif maker[0]:
         obj_list = PhoneModel.objects.filter(maker__id=maker[1])
         id = list(map(str, list(obj_list.values_list('id', flat=True))))
-        name = list(map(str, list(obj_list.values_list('makerName', flat=True))))
+        name = list(map(str, list(obj_list.values_list('modelName', flat=True))))
         result = [i + "(" + j + ")" for i, j in zip(name, id)]
         return JsonResponse({
             'message': {
