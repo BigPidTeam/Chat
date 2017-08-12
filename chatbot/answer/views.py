@@ -49,16 +49,13 @@ def message(request):
         temp1 = ''
         temp1 = return_str
 
-# return_str 의 값과 makerName의 값이 같은 modelName만 출력
         return JsonResponse({
             'message': {
                 'text': return_str + "의 어떤 기종을 선택하시겠습니까?",
             },
             'keyboard': {
                 'type': 'buttons',
-                'buttons': list(PhoneModel.objects.filter(maker__makerName=return_str).values_list('modelName', flat=True)),  # DB에 접근.
-                # return_str의 값과 PhoneModel의 값을 비교하여 알맞는것만 출력
-                # list
+                'buttons': list(PhoneModel.objects.filter(maker__makerName=return_str).values_list('modelName', flat=True)),
             },
         })
     if model:
@@ -76,6 +73,7 @@ def message(request):
             },
         })
     if capacity:
+        # if temp1/temp2/return_str과 db에 저장된 값이 같다면 텍스트, 사진 출력.
         return JsonResponse({
             'message': {
                 'text': temp1 + " " + temp2 + " " + return_str + "의 평균 가격은 503221 입니다. 최고가격은 82921 입니다. 최저가격은 29339입니다.",
@@ -90,7 +88,16 @@ def message(request):
                 'buttons':  ['시작하기', '도움말']
             },
         })
-
+    elif return_str == '도움말':
+        return JsonResponse({
+            'message': {
+                'text': "Scoop bot은 빅데이터를 활용한 중고 핸드폰 가격검색 챗봇입니다. 저희 Team Scoop은 중고시장을 활성화하여 소비자의 ~",
+            },
+            'keyboard': {
+                'type': 'buttons',
+                'buttons': ['시작하기', '도움말']
+            },
+        })
     else:
         return JsonResponse({
             'message': {
