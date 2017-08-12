@@ -140,37 +140,3 @@ def check_is_help(str):
         return True
     else:
         return False
-
-# 코딩 아이디어 메모
-
-# return JsonResponse({
-#
-#     'message': {
-#         'text': return_str,
-#         "photo": {
-#             "url": "http://ec2-13-124-156-121.ap-northeast-2.compute.amazonaws.com" + test.testPhoto.url,
-#             # url을 image viewer url로 하면 더 깔끔할듯
-#             "width": 640,
-#             "height": 480
-#         },
-#     },
-#
-#     'keyboard': {
-#         'type': 'buttons',
-#         'buttons': ['galaxy', 'bega', 'sony']
-#     }
-# })
-
-
-# 응답타입 체크 : content가 "삼성", "엘지" 이런거라면 check_type = maker
-# 코드로는 ex) check_is_maker(return_str)
-# return_str = return_json_str['content']
-# def check_is_maker(return_str)
-#   maker = Test.objects.all().value??()['test']
-#   for user_response in maker:
-#       if maker:
-#           return maker
-
-# if check_is_maker(user_response)
-# elif check_is_model(user_response)
-# ...
