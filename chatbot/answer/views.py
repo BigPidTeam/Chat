@@ -58,13 +58,14 @@ def message(request):
         })
 
     elif model:
+        phoneModel = PhoneModel.objects.get(id=model[1])
         return JsonResponse({
             'message': {
-                'text': return_str + "의 용량을 선택하여 주세요. 아무 용량이나 상관 없다면 용량선택안함을 눌러주세요",
+                'text': phoneModel.modelName + "의 정보입니다. ~~",
             },
             'keyboard': {
                 'type': 'buttons',
-                'buttons': ["1"]
+                'buttons': [phoneModel.modelName]
             },
         })
 
@@ -116,11 +117,17 @@ def check_is_maker(str):
 
 # user input is maker button check
 def check_is_model(str):
-    models = PhoneModel.objects.values_list('modelName', flat=True)
-    if str in models:
-        return True
+    if check_is_start(str) or check_is_help(str):
+        return False, 0
     else:
-        return False
+        str_list = str.split('(')
+        name = str_list[0]
+        id = str_list[1][:1]
+        models = PhoneModel.objects.values_list('modelName', flat=True)
+        if name in models:
+            return True, id
+        else:
+            return False, id
 
 
 def check_is_help(str):
