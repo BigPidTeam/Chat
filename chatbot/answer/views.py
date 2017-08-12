@@ -1,18 +1,12 @@
 # coding=utf-8
-from django.shortcuts import render
 from django.http import JsonResponse
 from answer.models import Maker
 from answer.models import PhoneModel
-from answer.models import Capacity
 from django.views.decorators.csrf import csrf_exempt
-from django.conf import settings
 import json
 
 # conversation start
 def keyboard(request):
-    # test = Test.objects.all().first()
-    # test_label = test.test
-
     return JsonResponse({
         'type': 'buttons',
         'buttons': ['시작하기', '도움말'] # start button for user
@@ -30,39 +24,40 @@ def message(request):
     start = check_is_start(return_str)  # check is start state
     maker = check_is_maker(return_str)  # check is choice maker state
     model = check_is_model(return_str)  # model check
-    capacity = check_is_capacity(return_str)  # capacity check
-    # test = Test.objects.all().first()
+    help = check_is_help(return_str)  # model check
 
     # if start button check
     if start:
+        id = list(map(str, list(Maker.objects.values_list('id', flat=True))))
+        name = list(map(str, list(Maker.objects.values_list('makerName', flat=True))))
+        result = [i + "(" + j + ")" for i, j in zip(name, id)]
+
         return JsonResponse({
             'message': {
                 'text': "얼마고를 시작합니다. 핸드폰 기종을 선택하여 주세요!",
             },
             'keyboard': {
                 'type': 'buttons',
-                'buttons': list(Maker.objects.values_list('makerName',  flat=True)),
+                'buttons': result,
             },
         })
-    if maker:
-        global temp1
-        temp1 = ''
-        temp1 = return_str
 
+    elif maker[0]:
+        obj_list = PhoneModel.objects.filter(maker__id=maker[1])
+        id = list(map(str, list(obj_list.values_list('id', flat=True))))
+        name = list(map(str, list(obj_list.values_list('makerName', flat=True))))
+        result = [i + "(" + j + ")" for i, j in zip(name, id)]
         return JsonResponse({
             'message': {
                 'text': return_str + "의 어떤 기종을 선택하시겠습니까?",
             },
             'keyboard': {
                 'type': 'buttons',
-                'buttons': list(PhoneModel.objects.filter(maker__makerName=return_str).values_list('modelName', flat=True)),
+                'buttons': result,
             },
         })
-    if model:
-        global temp2
-        temp2 = ''
-        temp2 = return_str
 
+    elif model:
         return JsonResponse({
             'message': {
                 'text': temp1 + " " + return_str + "의 용량을 선택하여 주세요. 아무 용량이나 상관 없다면 용량선택안함을 눌러주세요",
@@ -72,23 +67,8 @@ def message(request):
                 'buttons': list(Capacity.objects.filter(model__modelName=return_str).values_list('modelGB',flat = True)),  # 변수를 저장.
             },
         })
-    if capacity:
-        # if temp1/temp2/return_str과 db에 저장된 값이 같다면 텍스트, 사진 출력.
-        return JsonResponse({
-            'message': {
-                'text': temp1 + " " + temp2 + " " + return_str + "의 평균 가격은 503221 입니다. 최고가격은 82921 입니다. 최저가격은 29339입니다.",
-            },
-    #        "photo": {
-    #            "url": "http://ec2-13-124-156-121.ap-northeast-2.compute.amazonaws.com" + test.testPhoto.url,
-    #            "width": 640,
-    #            "height": 480
-    #        },
-            'keyboard': {
-                'type': 'buttons',
-                'buttons':  ['시작하기', '도움말']
-            },
-        })
-    elif return_str == '도움말':
+
+    elif help:
         return JsonResponse({
             'message': {
                 'text': "Scoop bot은 빅데이터를 활용한 중고 핸드폰 가격검색 챗봇입니다. 저희 Team Scoop은 중고시장을 활성화하여 소비자의 ~",
@@ -98,6 +78,7 @@ def message(request):
                 'buttons': ['시작하기', '도움말']
             },
         })
+
     else:
         return JsonResponse({
             'message': {
@@ -120,11 +101,14 @@ def check_is_start(str):
 
 # user input is maker button check
 def check_is_maker(str):
+    str_list = str.split('(')
+    name = str_list[0]
+    id = str_list[1][:1]
     makers = Maker.objects.values_list('makerName', flat=True)
-    if str in makers:
-        return True
+    if name in makers:
+        return True, id
     else:
-        return False
+        return False, id
 
 
 # user input is maker button check
@@ -136,9 +120,8 @@ def check_is_model(str):
         return False
 
 
-def check_is_capacity(str):
-    capacities = Capacity.objects.values_list('modelGB', flat=True)
-    if str in capacities:
+def check_is_help(str):
+    if str == "도움말":
         return True
     else:
         return False

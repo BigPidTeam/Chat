@@ -23,13 +23,4 @@ class PhoneModel(TimeStampedModel):
     modelPhoto = models.ImageField(null=True, blank=True)
 
     def __str__(self):
-        return self.maker.makerName+ " / " + self.modelName
-
-
-class Capacity(TimeStampedModel):
-    model = models.ForeignKey(PhoneModel, default=1)
-    modelGB = models.TextField(default="")
-    modelGBPhoto = models.ImageField(null=True, blank=True)
-
-    def __str__(self):
-        return self.model.maker.makerName + " / " + self.model.modelName + " / " + self.modelGB
+        return self.maker.makerName + " / " + self.modelName
