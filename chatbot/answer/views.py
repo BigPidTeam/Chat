@@ -22,9 +22,9 @@ def message(request):
     return_str = return_json_str['content']
 
     start = check_is_start(return_str)  # check is start state
+    help = check_is_help(return_str)  # model check
     maker = check_is_maker(return_str)  # check is choice maker state
     model = check_is_model(return_str)  # model check
-    help = check_is_help(return_str)  # model check
 
     # if start button check
     if start:
@@ -60,11 +60,11 @@ def message(request):
     elif model:
         return JsonResponse({
             'message': {
-                'text': temp1 + " " + return_str + "의 용량을 선택하여 주세요. 아무 용량이나 상관 없다면 용량선택안함을 눌러주세요",
+                'text': return_str + "의 용량을 선택하여 주세요. 아무 용량이나 상관 없다면 용량선택안함을 눌러주세요",
             },
             'keyboard': {
                 'type': 'buttons',
-                'buttons': list(Capacity.objects.filter(model__modelName=return_str).values_list('modelGB',flat = True)),  # 변수를 저장.
+                'buttons': ["1"]
             },
         })
 
@@ -101,14 +101,17 @@ def check_is_start(str):
 
 # user input is maker button check
 def check_is_maker(str):
-    str_list = str.split('(')
-    name = str_list[0]
-    id = str_list[1][:1]
-    makers = Maker.objects.values_list('makerName', flat=True)
-    if name in makers:
-        return True, id
+    if check_is_start(str) or check_is_help(str):
+        return False, 0
     else:
-        return False, id
+        str_list = str.split('(')
+        name = str_list[0]
+        id = str_list[1][:1]
+        makers = Maker.objects.values_list('makerName', flat=True)
+        if name in makers:
+            return True, id
+        else:
+            return False, id
 
 
 # user input is maker button check
