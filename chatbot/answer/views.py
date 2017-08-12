@@ -58,6 +58,7 @@ def message(request):
         })
 
     elif model:
+        print(model)
         phoneModel = PhoneModel.objects.get(id=model[1])
         return JsonResponse({
             'message': {
