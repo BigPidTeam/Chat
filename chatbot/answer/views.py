@@ -102,32 +102,38 @@ def check_is_start(str):
 
 # user input is maker button check
 def check_is_maker(str):
-    if check_is_start(str) or check_is_help(str):
-        return False, 0
-    else:
-        str_list = str.split('(')
-        name = str_list[0]
-        id = str_list[1][:1]
-        makers = Maker.objects.values_list('makerName', flat=True)
-        if name in makers:
-            return True, id
+    try:
+        if check_is_start(str) or check_is_help(str):
+            return False, 0
         else:
-            return False, id
+            str_list = str.split('(')
+            name = str_list[0]
+            id = str_list[1][:1]
+            makers = Maker.objects.values_list('makerName', flat=True)
+            if name in makers:
+                return True, id
+            else:
+                return False, id
+    except:
+        return False, 0
 
 
 # user input is maker button check
 def check_is_model(str):
-    if check_is_start(str) or check_is_help(str):
-        return False, 0
-    else:
-        str_list = str.split('(')
-        name = str_list[0]
-        id = str_list[1][:1]
-        models = PhoneModel.objects.values_list('modelName', flat=True)
-        if name in models:
-            return True, id
+    try:
+        if check_is_start(str) or check_is_help(str):
+            return False, 0
         else:
-            return False, id
+            str_list = str.split('(')
+            name = str_list[0]
+            id = str_list[1][:1]
+            models = PhoneModel.objects.values_list('modelName', flat=True)
+            if name in models:
+                return True, id
+            else:
+                return False, id
+    except:
+        return False, 0
 
 
 def check_is_help(str):
