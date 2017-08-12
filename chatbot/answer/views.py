@@ -72,7 +72,7 @@ def message(request):
             },
             'keyboard': {
                 'type': 'buttons',
-                'buttons': list(Capacity.objects.values_list('modelGB',flat = True)),  # 변수를 저장.
+                'buttons': list(Capacity.objects.filter(model__modelName=return_str).values_list('modelGB',flat = True)),  # 변수를 저장.
             },
         })
     if capacity:
