@@ -10,8 +10,8 @@ from sklearn.svm import SVC
 
 pos_tagger = Twitter()
 junggo_stopwords = pickle.load(open(os.path.join('files', 'junggo_stopwords.pkl'), 'rb'))
-junggo_dict_ko = pickle.load(open(os.path.join('files', 'dictionary_ko.pkl'), 'rb'))
-model_svm_for_textClassify = pickle.load(open(os.path.join('files', 'svm_for_textClassify.pkl'), 'rb'))
+junggo_dict_ko = pickle.load(open(os.path.join('files', 'dictionary_ko_lowZ.pkl'), 'rb'))
+model_svm_for_textClassify = pickle.load(open(os.path.join('files', 'svm_for_textClassify_lowZ.pkl'), 'rb'))
 
 
 def removeNumberNpunct(doc):
