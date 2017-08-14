@@ -4,6 +4,7 @@ from answer.models import Maker
 from answer.models import PhoneModel
 from django.views.decorators.csrf import csrf_exempt
 from modules import prediction
+import json
 
 
 # conversation start
