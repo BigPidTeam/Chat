@@ -96,10 +96,9 @@ def message(request):
 
     else:
         test_class = prediction.getItemClass(return_str)
-        print (test_class)
         return JsonResponse({
             'message': {
-                'text': '다시 시작합니다.',
+                'text': "모의 판매 결과 : " + test_class + "등급의 제품으로 시뮬레이션 되었습니다.",
             },
             'keyboard': {
                 'type': 'buttons',
