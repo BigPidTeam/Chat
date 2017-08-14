@@ -26,6 +26,7 @@ def tokenize(doc):
 
 def getItemClass(doc):
     X_tokens = tokenize(doc)
+    print(X_tokens)
     corpus_ko_list = []
     corpus_ko_innerlist = []
     for k in X_tokens:
