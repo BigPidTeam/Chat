@@ -41,8 +41,8 @@
       <file leaf-file-name="prediction.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/chatbot/modules/prediction.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="34" column="46" lean-forward="true" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
+            <state relative-caret-position="561">
+              <caret line="39" column="62" lean-forward="true" selection-start-line="39" selection-start-column="62" selection-end-line="39" selection-end-column="62" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -826,8 +826,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/chatbot/modules/prediction.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="34" column="46" lean-forward="true" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
+        <state relative-caret-position="561">
+          <caret line="39" column="62" lean-forward="true" selection-start-line="39" selection-start-column="62" selection-end-line="39" selection-end-column="62" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>

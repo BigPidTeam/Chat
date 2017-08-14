@@ -35,7 +35,7 @@ def getItemClass(doc):
     corpus_ko_list.append(corpus_ko_innerlist)
 
     tfidf_ko = models.TfidfModel(corpus_ko_list)
-    corpus_tfidf_ko = tfidf_ko[corpus_ko]
+    corpus_tfidf_ko = tfidf_ko[corpus_ko_list]
     X_tfidf = np.asarray([matutils.sparse2full(vec, 2000) for vec in corpus_tfidf_ko], dtype=np.float64)
     y_pred_class = model_svm_for_textClassify.predict(X_tfidf)
 
