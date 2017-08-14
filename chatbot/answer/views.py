@@ -83,8 +83,6 @@ def message(request):
         pass
 
     elif mode_seller:
-        test_token = prediction.tokenize(return_str)
-        print (test_token)
         return JsonResponse({
             'message': {
                 'text': '판매 모의 글을 올려보세요.',
@@ -95,7 +93,8 @@ def message(request):
         })
 
     else:
-
+        test_token = prediction.tokenize(return_str)
+        print (test_token)
         return JsonResponse({
             'message': {
                 'text': '다시 시작합니다.',
