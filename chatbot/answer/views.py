@@ -25,12 +25,12 @@ def message(request):
     help = check_is_help(return_str)  # model check
     maker = check_is_maker(return_str)  # check is choice maker state
     model = check_is_model(return_str)  # model check
+    mode_seller = check_is_seller(return_str)
+    mode_buyer = check_is_buyer(return_str)
 
     # if start button check
     if start:
-        id = list(map(str, list(Maker.objects.values_list('id', flat=True))))
-        name = list(map(str, list(Maker.objects.values_list('makerName', flat=True))))
-        result = [i + "(" + j + ")" for i, j in zip(name, id)]
+        result = list(Maker.objects.values_list('makerName', flat=True))
         return JsonResponse({
             'message': {
                 'text': "얼마고를 시작합니다. 핸드폰 기종을 선택하여 주세요!",
@@ -41,11 +41,10 @@ def message(request):
             },
         })
 
-    elif maker[0]:
-        obj_list = PhoneModel.objects.filter(maker__id=maker[1])
-        id = list(map(str, list(obj_list.values_list('id', flat=True))))
-        name = list(map(str, list(obj_list.values_list('modelName', flat=True))))
-        result = [i + "(" + j + ")" for i, j in zip(name, id)]
+    elif maker:
+        selected_maker = Maker.objects.get(makerName=return_str)
+        models = PhoneModel.objects.filter(maker=selected_maker)
+        result = list(models.values_list('modelName', flat=True))
         return JsonResponse({
             'message': {
                 'text': return_str + "의 어떤 기종을 선택하시겠습니까?",
@@ -56,22 +55,21 @@ def message(request):
             },
         })
 
-    elif model[0]:
-        phoneModel = PhoneModel.objects.get(id=model[1])
+    elif model:
         return JsonResponse({
             'message': {
-                'text': phoneModel.modelName + "의 정보입니다. ~~",
+                'text': return_str + "의 정보입니다. ~~",
             },
             'keyboard': {
                 'type': 'buttons',
-                'buttons': [phoneModel.modelName]
+                'buttons': ['가격 정보 보기', '모의 판매글 올리기'],
             },
         })
 
     elif help:
         return JsonResponse({
             'message': {
-                'text': "Scoop bot은 빅데이터를 활용한 중고 핸드폰 가격검색 챗봇입니다. 저희 Team Scoop은 중고시장을 활성화하여 소비자의 ~",
+                'text': "얼마고는 빅데이터를 활용한 중고 핸드폰 가격검색 챗봇입니다. 저희 Team Scoop은 중고시장을 활성화하여 소비자의 ~",
             },
             'keyboard': {
                 'type': 'buttons',
@@ -79,10 +77,23 @@ def message(request):
             },
         })
 
+    elif mode_buyer:
+        pass
+
+    elif mode_seller:
+        return JsonResponse({
+            'message': {
+                'text': '판매 모의 글을 올려보세요.',
+            },
+            'keyboard': {
+                'type': 'text'
+            },
+        })
+
     else:
         return JsonResponse({
             'message': {
-                'text': '다시시작합니다.',
+                'text': '다시 시작합니다.',
             },
             'keyboard': {
                 'type': 'buttons',
@@ -101,42 +112,41 @@ def check_is_start(str):
 
 # user input is maker button check
 def check_is_maker(str):
-    try:
-        if check_is_start(str) or check_is_help(str):
-            return False, 0
-        else:
-            str_list = str.split('(')
-            name = str_list[0]
-            id = str_list[1][:1]
-            makers = Maker.objects.values_list('makerName', flat=True)
-            if name in makers:
-                return True, id
-            else:
-                return False, id
-    except:
-        return False, 0
+    makers = Maker.objects.values_list('makerName', flat=True)
+    if str in makers:
+        return True
+    else:
+        return False
 
 
 # user input is maker button check
 def check_is_model(str):
-    try:
-        if check_is_start(str) or check_is_help(str):
-            return False, 0
-        else:
-            str_list = str.split('(')
-            name = str_list[0]
-            id = str_list[1][:1]
-            models = PhoneModel.objects.values_list('modelName', flat=True)
-            if name in models:
-                return True, id
-            else:
-                return False, id
-    except:
-        return False, 0
+    models = PhoneModel.objects.values_list('modelName', flat=True)
+    if str in models:
+        return True
+    else:
+        return False
 
 
+# user input is help button check
 def check_is_help(str):
     if str == "도움말":
+        return True
+    else:
+        return False
+
+
+# user input is seller mode check
+def check_is_seller(str):
+    if str == "모의 판매글 올리기":
+        return True
+    else:
+        return False
+
+
+# user input is buyer mode check
+def check_is_buyer(str):
+    if str == "가격 정보 보기":
         return True
     else:
         return False
