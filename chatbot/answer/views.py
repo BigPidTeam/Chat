@@ -3,7 +3,8 @@ from django.http import JsonResponse
 from answer.models import Maker
 from answer.models import PhoneModel
 from django.views.decorators.csrf import csrf_exempt
-import json
+from modules import prediction
+
 
 # conversation start
 def keyboard(request):
@@ -81,6 +82,8 @@ def message(request):
         pass
 
     elif mode_seller:
+        test_token = prediction.tokenize(return_str)
+        print (test_token)
         return JsonResponse({
             'message': {
                 'text': '판매 모의 글을 올려보세요.',
@@ -91,6 +94,7 @@ def message(request):
         })
 
     else:
+
         return JsonResponse({
             'message': {
                 'text': '다시 시작합니다.',
