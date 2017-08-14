@@ -26,7 +26,7 @@ def tokenize(doc):
 
 def getItemClass(doc):
     X_tokens = tokenize(doc)
-    corpus_ko = [junggo_dict_ko.doc2bow(text) for text in X_tokens]
+    corpus_ko = junggo_dict_ko.doc2bow(X_tokens)
     tfidf_ko = models.TfidfModel(corpus_ko)
     corpus_tfidf_ko = tfidf_ko[corpus_ko]
     X_tfidf = np.asarray([matutils.sparse2full(vec, 2000) for vec in corpus_tfidf_ko], dtype=np.float64)
