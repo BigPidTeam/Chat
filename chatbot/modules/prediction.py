@@ -27,4 +27,4 @@ def getItemClass(doc):
     X = vect.transform([doc])
     y_pred_class = clf.predict(X)
 
-    return y_pred_class
+    return str(y_pred_class[0])
