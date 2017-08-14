@@ -6,7 +6,7 @@ from konlpy.tag import Twitter
 import nltk
 
 
-pos_tagger = Twitter()
+# pos_tagger = Twitter()
 junggo_stopwords = pickle.load(open(os.path.join('files', 'junggo_stopwords.pkl'), 'rb'))
 
 
@@ -16,5 +16,5 @@ def removeNumberNpunct(doc):
     return text
 
 
-def tokenize(doc):
+def tokenize(doc, pos_tagger):
     return [t[0] for t in pos_tagger.pos(removeNumberNpunct(doc), norm=True, stem=True) if t[0] not in junggo_stopwords]

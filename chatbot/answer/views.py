@@ -4,8 +4,10 @@ from answer.models import Maker
 from answer.models import PhoneModel
 from django.views.decorators.csrf import csrf_exempt
 from modules import prediction
+from konlpy.tag import Twitter
 import json
 
+pos_tagger = Twitter()
 
 # conversation start
 def keyboard(request):
@@ -93,7 +95,7 @@ def message(request):
         })
 
     else:
-        test_token = prediction.tokenize(return_str)
+        test_token = prediction.tokenize(return_str, pos_tagger)
         print (test_token)
         return JsonResponse({
             'message': {
