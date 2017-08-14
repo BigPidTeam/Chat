@@ -4,11 +4,9 @@ from answer.models import Maker
 from answer.models import PhoneModel
 from django.views.decorators.csrf import csrf_exempt
 from modules import prediction
-from konlpy.tag import Twitter
 import jpype
 import json
 
-pos_tagger = Twitter()
 
 # conversation start
 def keyboard(request):
