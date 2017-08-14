@@ -95,8 +95,8 @@ def message(request):
         })
 
     else:
-        test_token = prediction.tokenize(return_str)
-        print (test_token)
+        test_class = prediction.getItemClass(return_str)
+        print (test_class)
         return JsonResponse({
             'message': {
                 'text': '다시 시작합니다.',
