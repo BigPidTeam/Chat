@@ -95,7 +95,7 @@ def message(request):
         })
 
     else:
-        test_token = prediction.tokenize(return_str, pos_tagger)
+        test_token = prediction.tokenize(return_str)
         print (test_token)
         return JsonResponse({
             'message': {
