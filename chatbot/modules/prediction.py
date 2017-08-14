@@ -31,7 +31,7 @@ def getItemClass(doc):
     for k in X_tokens:
         corpus_ko_innerlist.append(k)
     corpus_ko_list.append(corpus_ko_innerlist)
-    corpus_ko = junggo_dict_ko.doc2bow(corpus_ko_list)
+    corpus_ko = [junggo_dict_ko.doc2bow(text) for text in corpus_ko_list]
 
     tfidf_ko = models.TfidfModel(corpus_ko)
     corpus_tfidf_ko = tfidf_ko[corpus_ko]
