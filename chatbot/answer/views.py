@@ -5,6 +5,7 @@ from answer.models import PhoneModel
 from django.views.decorators.csrf import csrf_exempt
 from modules import prediction
 from konlpy.tag import Twitter
+import jpype
 import json
 
 pos_tagger = Twitter()
@@ -20,6 +21,7 @@ def keyboard(request):
 # response to user post type request
 @csrf_exempt
 def message(request):
+    jpype.attachThreadToJVM()
     message = ((request.body).decode('utf-8'))
 
     return_json_str = json.loads(message)
