@@ -13,6 +13,11 @@ junggo_stopwords = pickle.load(open(os.path.join('files', 'junggo_stopwords.pkl'
 junggo_dict_ko = pickle.load(open(os.path.join('files', 'dictionary_ko_lowZ.pkl'), 'rb'))
 model_svm_for_textClassify = pickle.load(open(os.path.join('files', 'svm_for_textClassify_lowZ.pkl'), 'rb'))
 
+data =pd.read_csv('/home/ubuntu/Chat/chatbot/files/trimed_junggo_data.csv', encoding ='UTF-8')
+sub = data.drop('Unnamed: 0', 1)
+ab = sub['contents'].tolist()[:50]
+abc = sub['판매금액_z_rank'].tolist()[:50]
+
 
 def removeNumberNpunct(doc):
     text = ''.join(c for c in doc if c.isalnum() or c in '+, ')
@@ -40,3 +45,9 @@ def getItemClass(doc):
     y_pred_class = model_svm_for_textClassify.predict(X_tfidf)
 
     return y_pred_class
+
+
+index = 0
+for i in ab:
+    index = index + 1
+    print (str(index), " : ", getItemClass(i))
