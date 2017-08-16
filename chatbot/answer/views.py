@@ -68,7 +68,7 @@ def message(request):
         model_name = return_str
         return JsonResponse({
             'message': {
-                'text': return_str + "의 정보입니다. ~~",
+                'text': return_str + "을 구매하길 원하신다면 '가격 정보 보기'를, 판매하길 원하신다면 '모의 판매글 올리기'를 선택해주세요.",
             },
             'keyboard': {
                 'type': 'buttons',
@@ -79,7 +79,7 @@ def message(request):
     elif help:
         return JsonResponse({
             'message': {
-                'text': "얼마고는 빅데이터를 활용한 중고 핸드폰 가격검색 챗봇입니다. 저희 Team Scoop은 중고시장을 활성화하여 소비자의 ~",
+                'text': "얼마고는 빅데이터를 활용한 중고폰 적정가격을 제안해주는 챗봇입니다. 팀 스쿱은 중고폰 거래 활성화 및 공정거래 문화 확립에 기여하고자 노력합니다.",
             },
             'keyboard': {
                 'type': 'buttons',
@@ -119,7 +119,7 @@ def message(request):
             model_name = ""
             return JsonResponse({
                 'message': {
-                    'text': model_name + "의 적정 가격 조회 결과 : " + rank + "등급의 제품의 적정 가격은 " + price + "입니다.",
+                    'text': "적정 가격 조회 결과 : " + rank + "등급의 제품의 적정 가격은 " + price + "원 입니다.",
                 },
                 'keyboard': {
                     'type': 'buttons',
@@ -137,7 +137,7 @@ def message(request):
             model_name = ""
             return JsonResponse({
                 'message': {
-                    'text': model_name + "의 모의 판매 결과 : " + rank + "등급의 제품으로 시뮬레이션 되었습니다. 적정 가격은 " + price + "입니다.",
+                    'text': "모의 판매 결과 : " + rank + "등급의 제품으로 시뮬레이션 되었습니다. 적정 가격은 " + price + "원 입니다.",
                 },
                 'keyboard': {
                     'type': 'buttons',
