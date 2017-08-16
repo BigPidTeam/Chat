@@ -122,8 +122,8 @@ def message(request):
                     'text': "적정 가격 조회 결과 입니다. (오차범위 약 ± 10%)" + "\n\n" +
                             "제품 등급 : " + rank + "등급" + "\n" +
                             "적정 가격 : " + price + "원" + "\n" +
-                            "적정 가격 상한선 : " + str(price + (price * 0.1)) + "원" + "\n" +
-                            "적정 가격 하한선 : " + str(price - (price * 0.1)) + "원" + "\n",
+                            "적정 가격 상한선 : " + str(int(price) + (int(price) * 0.1)) + "원" + "\n" +
+                            "적정 가격 하한선 : " + str(int(price) - (int(price) * 0.1)) + "원" + "\n",
                 },
                 'keyboard': {
                     'type': 'buttons',
@@ -144,8 +144,8 @@ def message(request):
                     'text': "모의 판매 시뮬레이션 결과 입니다. (오차범위 약 ± 10%)" + "\n\n" +
                             "제품 등급 : " + rank + "등급" + "\n" +
                             "적정 가격 : " + price + "원" + "\n" +
-                            "적정 가격 상한선 : " + str(price + (price * 0.1)) + "원" + "\n" +
-                            "적정 가격 하한선 : " + str(price - (price * 0.1)) + "원" + "\n",
+                            "적정 가격 상한선 : " + str(int(price) + (int(price) * 0.1)) + "원" + "\n" +
+                            "적정 가격 하한선 : " + str(int(price) - (int(price) * 0.1)) + "원" + "\n",
                 },
                 'keyboard': {
                     'type': 'buttons',
