@@ -119,7 +119,11 @@ def message(request):
             model_name = ""
             return JsonResponse({
                 'message': {
-                    'text': "적정 가격 조회 결과 : " + rank + "등급의 제품의 적정 가격은 " + price + "원 입니다.",
+                    'text': "적정 가격 조회 결과 입니다. (오차범위 약 ± 10%)" + "\n\n" +
+                            "제품 등급 : " + rank + "등급" + "\n" +
+                            "적정 가격 : " + price + "원" + "\n" +
+                            "적정 가격 상한선 : " + str(price + (price * 0.1)) + "원" + "\n" +
+                            "적정 가격 하한선 : " + str(price - (price * 0.1)) + "원" + "\n",
                 },
                 'keyboard': {
                     'type': 'buttons',
@@ -137,7 +141,11 @@ def message(request):
             model_name = ""
             return JsonResponse({
                 'message': {
-                    'text': "모의 판매 결과 : " + rank + "등급의 제품으로 시뮬레이션 되었습니다. 적정 가격은 " + price + "원 입니다.",
+                    'text': "모의 판매 시뮬레이션 결과 입니다. (오차범위 약 ± 10%)" + "\n\n" +
+                            "제품 등급 : " + rank + "등급" + "\n" +
+                            "적정 가격 : " + price + "원" + "\n" +
+                            "적정 가격 상한선 : " + str(price + (price * 0.1)) + "원" + "\n" +
+                            "적정 가격 하한선 : " + str(price - (price * 0.1)) + "원" + "\n",
                 },
                 'keyboard': {
                     'type': 'buttons',
