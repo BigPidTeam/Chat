@@ -67,6 +67,7 @@ def message(request):
     elif model:
         model_name = return_str
         phoneModel = PhoneModel.objects.get(modelName=return_str)
+        print(phoneModel.modelPhoto.url)
         return JsonResponse({
             'message': {
                 'text': return_str + "을 구매하길 원하신다면 '가격 정보 보기'를, 판매하길 원하신다면 '모의 판매글 올리기'를 선택해주세요.",
