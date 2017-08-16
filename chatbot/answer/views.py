@@ -34,6 +34,7 @@ def message(request):
     model = check_is_model(return_str)  # model check
     mode_seller = check_is_seller(return_str)
     mode_buyer = check_is_buyer(return_str)
+    mode_buyer_rank = check_is_rank(return_str)
 
     # if start button check
     if start:
@@ -87,7 +88,15 @@ def message(request):
         })
 
     elif mode_buyer:
-        pass
+        return JsonResponse({
+            'message': {
+                'text': '원하는 중고 핸드폰의 상태를 입력해주세요.',
+            },
+            'keyboard': {
+                'type': 'buttons',
+                'buttons': ['A', 'B', 'C']
+            },
+        })
 
     elif mode_seller:
         return JsonResponse({
@@ -99,6 +108,24 @@ def message(request):
             },
         })
 
+    elif mode_buyer_rank:
+        global model_name
+        if model_name != "":
+            rank = return_str
+            elements = Elements.getCurrentElements()
+            phoneModel = PhoneModel.objects.get(modelName=model_name)
+            price = prediction_price.getPrice(phoneModel.modelName, elements.currentMonth, rank,
+                                              phoneModel.factoryPrice, elements.currentRate)
+            model_name = ""
+            return JsonResponse({
+                'message': {
+                    'text': model_name + "의 적정 가격 조회 결과 : " + rank + "등급의 제품의 적정 가격은 " + price + "입니다.",
+                },
+                'keyboard': {
+                    'type': 'buttons',
+                    'buttons': ['시작하기', '도움말']
+                },
+            })
     else:
         global model_name
         if model_name != "":
@@ -110,7 +137,7 @@ def message(request):
             model_name = ""
             return JsonResponse({
                 'message': {
-                    'text': "모의 판매 결과 : " + rank + "등급의 제품으로 시뮬레이션 되었습니다. 적정 가격은 " + price + "입니다.",
+                    'text': model_name + "의 모의 판매 결과 : " + rank + "등급의 제품으로 시뮬레이션 되었습니다. 적정 가격은 " + price + "입니다.",
                 },
                 'keyboard': {
                     'type': 'buttons',
@@ -164,6 +191,18 @@ def check_is_seller(str):
 # user input is buyer mode check
 def check_is_buyer(str):
     if str == "가격 정보 보기":
+        return True
+    else:
+        return False
+
+
+# user input is buyer mode, rank check
+def check_is_rank(str):
+    if str == "A":
+        return True
+    elif str == "B":
+        return True
+    elif str == "C":
         return True
     else:
         return False
