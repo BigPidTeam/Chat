@@ -22,6 +22,7 @@ def keyboard(request):
 # response to user post type request
 @csrf_exempt
 def message(request):
+    global model_name
     jpype.attachThreadToJVM()
     message = ((request.body).decode('utf-8'))
 
@@ -64,11 +65,16 @@ def message(request):
         })
 
     elif model:
-        global model_name
         model_name = return_str
+        phoneModel = PhoneModel.objects.get(model_name=return_str)
         return JsonResponse({
             'message': {
                 'text': return_str + "을 구매하길 원하신다면 '가격 정보 보기'를, 판매하길 원하신다면 '모의 판매글 올리기'를 선택해주세요.",
+            },
+            "photo": {
+                "url": "http://ec2-13-124-156-121.ap-northeast-2.compute.amazonaws.com:8000" + phoneModel.modelPhoto.url,
+                "width": 640,
+                "height": 480
             },
             'keyboard': {
                 'type': 'buttons',
@@ -79,7 +85,8 @@ def message(request):
     elif help:
         return JsonResponse({
             'message': {
-                'text': "얼마고는 빅데이터를 활용한 중고폰 적정가격을 제안해주는 챗봇입니다. 팀 스쿱은 중고폰 거래 활성화 및 공정거래 문화 확립에 기여하고자 노력합니다.",
+                'text': "얼마고는 팀 스쿱의 프로젝트 챗봇으로, 빅데이터를 활용한 중고폰 적정가격을 제안해주는 챗봇입니다. " +
+                        "팀 스쿱은 중고거래 활성화 및 공정거래 문화 확립에 기여하고자 노력합니다.",
             },
             'keyboard': {
                 'type': 'buttons',
@@ -109,7 +116,6 @@ def message(request):
         })
 
     elif mode_buyer_rank:
-        global model_name
         if model_name != "":
             rank = return_str
             elements = Elements.getCurrentElements()
@@ -131,7 +137,6 @@ def message(request):
                 },
             })
     else:
-        global model_name
         if model_name != "":
             rank = prediction_rank.getItemClass(return_str)
             elements = Elements.getCurrentElements()
