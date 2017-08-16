@@ -30,4 +30,4 @@ def getPrice(modelName, currentMonth, rank, factoryPrice, currentRate):
     X_train_concat = pd.concat([X_df_2, X_input_factor_vector], axis=1)
 
     result = forest.predict(X_train_concat)
-    return (str(int(result[0])))
+    return (int(result[0]))
