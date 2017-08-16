@@ -107,6 +107,7 @@ def message(request):
             phoneModel = PhoneModel.objects.get(modelName=model_name)
             price = prediction_price.getPrice(phoneModel.modelName, elements.currentMonth, rank,
                                               phoneModel.factoryPrice, elements.currentRate)
+            model_name = ""
             return JsonResponse({
                 'message': {
                     'text': "모의 판매 결과 : " + rank + "등급의 제품으로 시뮬레이션 되었습니다. 적정 가격은 " + price + "입니다.",
