@@ -21,6 +21,15 @@ class PhoneModel(TimeStampedModel):
     maker = models.ForeignKey(Maker, default=1)
     modelName = models.TextField(default="")
     modelPhoto = models.ImageField(null=True, blank=True)
+    factoryPrice = models.IntegerField(default=0)
 
     def __str__(self):
         return self.maker.makerName + " / " + self.modelName
+
+
+class Elements(TimeStampedModel):
+    currentMonth = models.TextField(default="")
+    currentRate = models.IntegerField(default=0)
+
+    def __set__(self):
+        return self.currentMonth + " / " + str(self.currentRate)
