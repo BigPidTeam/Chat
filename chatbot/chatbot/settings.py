@@ -102,7 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/uploads')
-MEDIA_URL = '/media/'
+MEDIA_URL = '/static/uploads/'
 
 LANGUAGE_CODE = 'en-us'
 
@@ -120,5 +120,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static/uploads'),
+    os.path.join(BASE_DIR, 'static'),
 )
