@@ -33,3 +33,7 @@ class Elements(TimeStampedModel):
 
     def __set__(self):
         return self.currentMonth + " / " + str(self.currentRate)
+
+    @staticmethod
+    def getCurrentElements():
+        return Elements.objects.all().first()

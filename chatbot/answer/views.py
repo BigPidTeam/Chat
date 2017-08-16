@@ -1,11 +1,14 @@
 # coding=utf-8
 from django.http import JsonResponse
-from answer.models import Maker
-from answer.models import PhoneModel
+from answer.models import Maker, PhoneModel, Elements
 from django.views.decorators.csrf import csrf_exempt
-from modules import prediction
+from modules import prediction_rank
+from modules import prediction_price
 import jpype
 import json
+
+
+model_name = ""
 
 
 # conversation start
@@ -60,6 +63,8 @@ def message(request):
         })
 
     elif model:
+        global model_name
+        model_name = return_str
         return JsonResponse({
             'message': {
                 'text': return_str + "의 정보입니다. ~~",
@@ -84,7 +89,6 @@ def message(request):
     elif mode_buyer:
         pass
 
-
     elif mode_seller:
         return JsonResponse({
             'message': {
@@ -96,16 +100,22 @@ def message(request):
         })
 
     else:
-        test_class = prediction.getItemClass(return_str)
-        return JsonResponse({
-            'message': {
-                'text': "모의 판매 결과 : " + test_class + "등급의 제품으로 시뮬레이션 되었습니다.",
-            },
-            'keyboard': {
-                'type': 'buttons',
-                'buttons': ['시작하기', '도움말']
-            },
-        })
+        global model_name
+        if model_name != "":
+            rank = prediction_rank.getItemClass(return_str)
+            elements = Elements.getCurrentElements()
+            phoneModel = PhoneModel.objects.get(modelName=model_name)
+            price = prediction_price.getPrice(phoneModel.modelName, elements.currentMonth, rank,
+                                              phoneModel.factoryPrice, elements.currentRate)
+            return JsonResponse({
+                'message': {
+                    'text': "모의 판매 결과 : " + rank + "등급의 제품으로 시뮬레이션 되었습니다. 적정 가격은 " + price + "입니다.",
+                },
+                'keyboard': {
+                    'type': 'buttons',
+                    'buttons': ['시작하기', '도움말']
+                },
+            })
 
 
 # user input is start button check
