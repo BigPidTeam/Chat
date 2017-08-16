@@ -84,6 +84,7 @@ def message(request):
     elif mode_buyer:
         pass
 
+
     elif mode_seller:
         return JsonResponse({
             'message': {
