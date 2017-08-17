@@ -140,6 +140,7 @@ def message(request):
     else:
         if model_name != "":
             rank = prediction_rank.getItemClass(return_str)
+            print (rank)
             elements = Elements.getCurrentElements()
             phoneModel = PhoneModel.objects.get(modelName=model_name)
             price = prediction_price.getPrice(phoneModel.modelName, elements.currentMonth, rank,
