@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-import raven
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,9 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'answer',
-    # 'raven.contrib.django.raven_compat',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -77,12 +73,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'chatbot.wsgi.application'
 
-# RAVEN_CONFIG = {
-#     'dsn': 'https://2b33bced4571410da05b41e017bfb613:c042c07b5b1a4deab866dc3b0875edb3@sentry.io/200408',
-#     # If you are using git, you can also automatically configure the
-#     # release based on the git info.
-#     # 'release': raven.fetch_git_sha('/home/ubuntu/Chat'),
-# }
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
@@ -117,6 +107,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/uploads')
+MEDIA_URL = '/static/uploads/'
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Seoul'
@@ -132,3 +125,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)

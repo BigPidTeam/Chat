@@ -1,6 +1,7 @@
 # coding=utf-8
 from django.http import JsonResponse
 from answer.models import Maker, PhoneModel, Elements
+from users.models import User
 from django.views.decorators.csrf import csrf_exempt
 from modules import prediction_rank
 from modules import prediction_price
@@ -22,14 +23,12 @@ def keyboard(request):
 # response to user post type request
 @csrf_exempt
 def message(request):
-    global model_name
     jpype.attachThreadToJVM()
     message = ((request.body).decode('utf-8'))
 
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
     user_key = return_json_str['user_key']
-    print(user_key)
 
     start = check_is_start(return_str)  # check is start state
     help = check_is_help(return_str)  # model check
@@ -67,9 +66,8 @@ def message(request):
         })
 
     elif model:
-        model_name = return_str
         phoneModel = PhoneModel.objects.get(modelName=return_str)
-        print(phoneModel.modelPhoto.url)
+        User.setUserState(user_key, phoneModel)
         return JsonResponse({
             'message': {
                 'text': return_str + "을 구매하길 원하신다면 '가격 정보 보기'를, 판매하길 원하신다면 '모의 판매글 올리기'를 선택해주세요.",
@@ -119,13 +117,14 @@ def message(request):
         })
 
     elif mode_buyer_rank:
-        if model_name != "":
+        user = User.getUser(user_key)
+        if user.modelChoice:
             rank = return_str
             elements = Elements.getCurrentElements()
-            phoneModel = PhoneModel.objects.get(modelName=model_name)
+            phoneModel = PhoneModel.objects.get(pk=user.phoneModel)
             price = prediction_price.getPrice(phoneModel.modelName, elements.currentMonth, rank,
                                               phoneModel.factoryPrice, elements.currentRate)
-            model_name = ""
+            user.stateClear()
             return JsonResponse({
                 'message': {
                     'text': "적정 가격 조회 결과 입니다. (오차범위 약 ± 10%)" + "\n\n" +
@@ -140,14 +139,14 @@ def message(request):
                 },
             })
     else:
-        if model_name != "":
+        user = User.getUser(user_key)
+        if user.modelChoice:
             rank = prediction_rank.getItemClass(return_str)
-            print (rank)
             elements = Elements.getCurrentElements()
-            phoneModel = PhoneModel.objects.get(modelName=model_name)
+            phoneModel = PhoneModel.objects.get(pk=user.phoneModel)
             price = prediction_price.getPrice(phoneModel.modelName, elements.currentMonth, rank,
                                               phoneModel.factoryPrice, elements.currentRate)
-            model_name = ""
+            user.stateClear()
             return JsonResponse({
                 'message': {
                     'text': "모의 판매 시뮬레이션 결과 입니다. (오차범위 약 ± 10%)" + "\n\n" +
