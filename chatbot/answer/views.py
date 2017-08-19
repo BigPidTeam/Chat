@@ -121,7 +121,7 @@ def message(request):
         if user.modelChoice:
             rank = return_str
             elements = Elements.getCurrentElements()
-            phoneModel = PhoneModel.objects.get(pk=user.phoneModel)
+            phoneModel = user.phoneModel
             price = prediction_price.getPrice(phoneModel.modelName, elements.currentMonth, rank,
                                               phoneModel.factoryPrice, elements.currentRate)
             user.stateClear()
@@ -143,7 +143,7 @@ def message(request):
         if user.modelChoice:
             rank = prediction_rank.getItemClass(return_str)
             elements = Elements.getCurrentElements()
-            phoneModel = PhoneModel.objects.get(pk=user.phoneModel)
+            phoneModel = user.phoneModel
             price = prediction_price.getPrice(phoneModel.modelName, elements.currentMonth, rank,
                                               phoneModel.factoryPrice, elements.currentRate)
             user.stateClear()
