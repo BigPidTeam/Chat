@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d9e1d07-3326-44a5-b4b9-ac9029d5da95" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uwsgi/chatbot.ini" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uwsgi/uwsgi.ini" afterPath="$PROJECT_DIR$/uwsgi/uwsgi.ini" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
