@@ -20,7 +20,6 @@ class User(TimeStampedModel):
 
     def stateClear(self):
         self.modelChoice = False
-        self.phoneModel = None
         self.save()
 
     @staticmethod
