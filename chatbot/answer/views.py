@@ -28,6 +28,8 @@ def message(request):
 
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
+    user_key = return_json_str['user_key']
+    print(user_key)
 
     start = check_is_start(return_str)  # check is start state
     help = check_is_help(return_str)  # model check
