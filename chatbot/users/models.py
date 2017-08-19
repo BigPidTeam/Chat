@@ -21,6 +21,7 @@ class User(TimeStampedModel):
     def stateClear(self):
         self.modelChoice = False
         self.phoneModel = None
+        self.save()
 
     @staticmethod
     def createUser(user_key, phoneModel):
